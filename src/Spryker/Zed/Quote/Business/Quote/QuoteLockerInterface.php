@@ -5,23 +5,23 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Zed\Quote\Persistence;
+namespace Spryker\Zed\Quote\Business\Quote;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 
-interface QuoteEntityManagerInterface
+interface QuoteLockerInterface
 {
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function saveQuote(QuoteTransfer $quoteTransfer);
+    public function lock(QuoteTransfer $quoteTransfer): QuoteTransfer;
 
     /**
-     * @param int $idQuote
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function deleteQuoteById($idQuote);
+    public function unlock(QuoteTransfer $quoteTransfer): QuoteTransfer;
 }
