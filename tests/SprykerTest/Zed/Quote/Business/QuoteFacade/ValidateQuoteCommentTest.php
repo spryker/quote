@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Bundles\Quote\tests\SprykerTest\Zed\Quote\Business\QuoteFacade;
+namespace SprykerTest\Zed\Quote\Business\QuoteFacade;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\CommentRequestTransfer;
@@ -17,9 +17,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 /**
  * Auto-generated group annotations
  *
- * @group Bundles
- * @group Quote
- * @group tests
  * @group SprykerTest
  * @group Zed
  * @group Quote
