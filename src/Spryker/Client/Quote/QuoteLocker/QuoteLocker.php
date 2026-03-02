@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class QuoteLocker implements QuoteLockerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function lock(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $quoteTransfer->setIsLocked(true);

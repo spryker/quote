@@ -37,9 +37,6 @@ class QuotePersistenceFactory extends AbstractPersistenceFactory
         return new QuoteMapper($this->getUtilEncodingService());
     }
 
-    /**
-     * @return \Propel\Runtime\Connection\ConnectionInterface
-     */
     public function getPropelConnection(): ConnectionInterface
     {
         return Propel::getConnection();

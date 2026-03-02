@@ -11,13 +11,7 @@ use Generated\Shared\Transfer\CustomerTransfer;
 
 interface QuoteToCustomerClientInterface
 {
-    /**
-     * @return bool
-     */
     public function isLoggedIn(): bool;
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerTransfer|null
-     */
     public function getCustomer(): ?CustomerTransfer;
 }

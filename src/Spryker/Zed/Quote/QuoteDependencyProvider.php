@@ -82,11 +82,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const PLUGINS_QUOTE_COLLECTION_FILTER = 'PLUGINS_QUOTE_COLLECTION_FILTER';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
@@ -107,11 +102,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function providePersistenceLayerDependencies(Container $container): Container
     {
         $container = $this->addUtilEncodingService($container);
@@ -119,11 +109,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilEncodingService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
@@ -133,11 +118,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addStoreFacade(Container $container): Container
     {
         $container->set(static::FACADE_STORE, function (Container $container) {
@@ -147,11 +127,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteCreateAfterPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_CREATE_AFTER, function (Container $container) {
@@ -161,11 +136,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_EXPANDER, function (Container $container) {
@@ -175,11 +145,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteCreateBeforePlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_CREATE_BEFORE, function (Container $container) {
@@ -189,11 +154,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteUpdateAfterPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_UPDATE_AFTER, function (Container $container) {
@@ -203,11 +163,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteExpandBeforeCreatePlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_EXPAND_BEFORE_CREATE, function (Container $container): array {
@@ -217,11 +172,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteUpdateBeforePlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_UPDATE_BEFORE, function (Container $container) {
@@ -231,11 +181,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteDeleteBeforePlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_DELETE_BEFORE, function (Container $container) {
@@ -245,11 +190,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteDeleteAfterPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_DELETE_AFTER, function (Container $container) {
@@ -259,11 +199,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteValidatorPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_VALIDATOR, function (Container $container) {
@@ -273,11 +208,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteFieldsAllowedForSavingProviderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_FIELDS_ALLOWED_FOR_SAVING_PROVIDER, function () {
@@ -287,11 +217,6 @@ class QuoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteCollectionFilterPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_COLLECTION_FILTER, function () {

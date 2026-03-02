@@ -48,9 +48,6 @@ class StorageStrategyProviderTest extends Unit
      */
     protected QuoteClientTester $tester;
 
-    /**
-     * @return void
-     */
     public function testNotLoggedInCustomerCanUseSessionStorageOnly(): void
     {
         $customerClient = $this->createCustomerClientMock();
@@ -71,9 +68,6 @@ class StorageStrategyProviderTest extends Unit
         $this->assertInstanceOf(SessionStorageStrategy::class, $storageStrategy);
     }
 
-    /**
-     * @return void
-     */
     public function testDatabaseStorageStrategyGetQuoteReturnsChangedQuoteTransfer(): void
     {
         // Arrange
@@ -116,9 +110,6 @@ class StorageStrategyProviderTest extends Unit
         $this->assertEquals(TestDatabaseStrategyReaderPlugin::CUSTOMER_REFERENCE, $quoteTransfer->getCustomerReference());
     }
 
-    /**
-     * @return void
-     */
     public function testLoggedInCustomerCanUseSessionStorage(): void
     {
         $customerClient = $this->createCustomerClientMock();
@@ -139,9 +130,6 @@ class StorageStrategyProviderTest extends Unit
         $this->assertInstanceOf(SessionStorageStrategy::class, $storageStrategy);
     }
 
-    /**
-     * @return void
-     */
     public function testLoggedInCustomerCanUseDatabaseStorage(): void
     {
         $customerClient = $this->createCustomerClientMock();
@@ -162,9 +150,6 @@ class StorageStrategyProviderTest extends Unit
         $this->assertInstanceOf(DatabaseStorageStrategy::class, $storageStrategy);
     }
 
-    /**
-     * @return void
-     */
     public function testUsingIncorrectStorageTypeLeadsToError(): void
     {
         $customerClient = $this->createCustomerClientMock();
@@ -204,11 +189,6 @@ class StorageStrategyProviderTest extends Unit
         return new StorageStrategyProvider($quoteConfig, $storageStrategyList);
     }
 
-    /**
-     * @param \Spryker\Client\Quote\Dependency\Client\QuoteToCustomerClientInterface $customerClient
-     *
-     * @return \Spryker\Client\Quote\StorageStrategy\DatabaseStorageStrategy
-     */
     protected function createDatabaseStorageStrategy(QuoteToCustomerClientInterface $customerClient): DatabaseStorageStrategy
     {
         return new DatabaseStorageStrategy(
@@ -223,9 +203,6 @@ class StorageStrategyProviderTest extends Unit
         );
     }
 
-    /**
-     * @return \Spryker\Client\Quote\StorageStrategy\SessionStorageStrategy
-     */
     protected function createSessionStorageStrategy(): SessionStorageStrategy
     {
         return new SessionStorageStrategy(
@@ -236,9 +213,6 @@ class StorageStrategyProviderTest extends Unit
         );
     }
 
-    /**
-     * @return \Spryker\Client\Quote\Session\QuoteSessionInterface
-     */
     protected function createQuoteSession(): QuoteSessionInterface
     {
         $sessionContainer = new Session(new MockArraySessionStorage());

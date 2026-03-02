@@ -85,12 +85,6 @@ class QuoteReader implements QuoteReaderInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function findQuoteByCustomerAndStore(CustomerTransfer $customerTransfer, StoreTransfer $storeTransfer): QuoteResponseTransfer
     {
         $customerTransfer->requireCustomerReference();
@@ -133,12 +127,6 @@ class QuoteReader implements QuoteReaderInterface
         return $this->setQuoteResponseTransfer($quoteResponseTransfer, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer|null $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function setQuoteResponseTransfer(QuoteResponseTransfer $quoteResponseTransfer, ?QuoteTransfer $quoteTransfer = null): QuoteResponseTransfer
     {
         if (!$quoteTransfer) {
@@ -153,11 +141,6 @@ class QuoteReader implements QuoteReaderInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function findQuoteByUuid(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $quoteTransfer->requireUuid();
@@ -178,11 +161,6 @@ class QuoteReader implements QuoteReaderInterface
             ->setIsSuccessful(true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteCollectionTransfer
-     */
     public function getFilteredQuoteCollection(QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer): QuoteCollectionTransfer
     {
         $quoteCollectionTransfer = $this->quoteRepository->filterQuoteCollection($quoteCriteriaFilterTransfer);
@@ -195,11 +173,6 @@ class QuoteReader implements QuoteReaderInterface
         return $this->executeExpandQuotePluginsForQuoteCollection($quoteCollectionTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteCollectionTransfer $quoteCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteCollectionTransfer
-     */
     protected function executeExpandQuotePluginsForQuoteCollection(
         QuoteCollectionTransfer $quoteCollectionTransfer
     ): QuoteCollectionTransfer {
@@ -220,11 +193,6 @@ class QuoteReader implements QuoteReaderInterface
         return $expandedQuotesCollection;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
     protected function executePreExpandQuotePlugins(QuoteTransfer $quoteTransfer): void
     {
         foreach ($this->quoteExpanderPlugins as $quoteExpanderPlugin) {
@@ -234,11 +202,6 @@ class QuoteReader implements QuoteReaderInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function executeExpandQuotePlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         foreach ($this->quoteExpanderPlugins as $quoteExpanderPlugin) {
@@ -248,9 +211,6 @@ class QuoteReader implements QuoteReaderInterface
         return $quoteTransfer;
     }
 
-    /**
-     * @return void
-     */
     protected function executePostExpandQuotePlugins(): void
     {
         foreach ($this->quoteExpanderPlugins as $quoteExpanderPlugin) {
@@ -260,12 +220,6 @@ class QuoteReader implements QuoteReaderInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteCollectionTransfer $quoteCollectionTransfer
-     * @param \Generated\Shared\Transfer\QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteCollectionTransfer
-     */
     protected function executeQuoteCollectionFilterPlugins(
         QuoteCollectionTransfer $quoteCollectionTransfer,
         QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer

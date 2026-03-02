@@ -9,8 +9,5 @@ namespace Spryker\Client\Quote\StorageStrategy;
 
 interface StorageStrategyProviderInterface
 {
-    /**
-     * @return \Spryker\Client\Quote\StorageStrategy\StorageStrategyInterface
-     */
     public function provideStorage(): StorageStrategyInterface;
 }

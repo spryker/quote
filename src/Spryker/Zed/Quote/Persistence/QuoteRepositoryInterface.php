@@ -58,32 +58,11 @@ interface QuoteRepositoryInterface
      */
     public function filterQuoteCollection(QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer): QuoteCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\SpyQuoteEntityTransfer $quoteEntityTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function mapQuoteTransfer(SpyQuoteEntityTransfer $quoteEntityTransfer): QuoteTransfer;
 
-    /**
-     * @param \DateTime $lifetimeLimitDate
-     * @param int $limit
-     *
-     * @return \Generated\Shared\Transfer\QuoteCollectionTransfer
-     */
     public function findExpiredGuestQuotes(DateTime $lifetimeLimitDate, int $limit): QuoteCollectionTransfer;
 
-    /**
-     * @param string $uuidQuote
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer|null
-     */
     public function findQuoteByUuid(string $uuidQuote): ?QuoteTransfer;
 
-    /**
-     * @param int $idQuote
-     *
-     * @return bool
-     */
     public function acquireExclusiveQuoteLock(int $idQuote): bool;
 }

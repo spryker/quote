@@ -19,12 +19,6 @@ class PersistentQuoteHelper extends Module
     use DependencyHelperTrait;
     use LocatorHelperTrait;
 
-    /**
-     * @param array $seed
-     * @param bool|null $shouldReloadItems
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function havePersistentQuote(array $seed = [], ?bool $shouldReloadItems = false): QuoteTransfer
     {
         $quoteTransfer = (new QuoteBuilder($seed))->build();
@@ -46,19 +40,11 @@ class PersistentQuoteHelper extends Module
         return $quoteResponseTransfer->getQuoteTransfer();
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\QuoteFacadeInterface
-     */
     private function getFacade(): QuoteFacadeInterface
     {
         return $this->getLocator()->quote()->facade();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
     protected function assureCurrency(QuoteTransfer $quoteTransfer): void
     {
         if (!$quoteTransfer->getCurrency()) {
@@ -71,11 +57,6 @@ class PersistentQuoteHelper extends Module
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
     protected function assureStore(QuoteTransfer $quoteTransfer): void
     {
         if (!$quoteTransfer->getStore()) {

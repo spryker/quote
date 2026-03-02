@@ -24,17 +24,11 @@ class QuoteToCustomerClientBridge implements QuoteToCustomerClientInterface
         $this->customerClient = $customerClient;
     }
 
-    /**
-     * @return bool
-     */
     public function isLoggedIn(): bool
     {
         return $this->customerClient->isLoggedIn();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerTransfer|null
-     */
     public function getCustomer(): ?CustomerTransfer
     {
         return $this->customerClient->getCustomer();

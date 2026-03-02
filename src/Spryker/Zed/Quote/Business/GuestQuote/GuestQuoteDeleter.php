@@ -63,9 +63,6 @@ class GuestQuoteDeleter implements GuestQuoteDeleterInterface
         $this->config = $config;
     }
 
-    /**
-     * @return void
-     */
     public function deleteExpiredGuestQuote(): void
     {
         do {
@@ -79,9 +76,6 @@ class GuestQuoteDeleter implements GuestQuoteDeleterInterface
         } while ($quoteCollectionTransfer->getQuotes()->count());
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteCollectionTransfer
-     */
     protected function findExpiredGuestQuotes(): QuoteCollectionTransfer
     {
         $lifetime = $this->config->getGuestQuoteLifetime();
@@ -91,22 +85,12 @@ class GuestQuoteDeleter implements GuestQuoteDeleterInterface
         return $this->quoteRepository->findExpiredGuestQuotes($lifetimeLimitDate, static::BATCH_SIZE_LIMIT);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
     protected function executeDeleteTransaction(QuoteTransfer $quoteTransfer): void
     {
         $quoteTransfer = $this->executeDeleteBeforePlugins($quoteTransfer);
         $this->quoteEntityManager->deleteQuoteById($quoteTransfer->getIdQuote());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function executeDeleteBeforePlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         foreach ($this->quoteDeleteBeforePlugins as $quoteDeleteBeforePlugin) {

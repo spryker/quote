@@ -9,8 +9,5 @@ namespace Spryker\Zed\Quote\Business\GuestQuote;
 
 interface GuestQuoteDeleterInterface
 {
-    /**
-     * @return void
-     */
     public function deleteExpiredGuestQuote(): void;
 }

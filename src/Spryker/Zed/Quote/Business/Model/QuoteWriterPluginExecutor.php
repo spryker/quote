@@ -49,41 +49,21 @@ class QuoteWriterPluginExecutor implements QuoteWriterPluginExecutorInterface
         $this->quoteUpdateAfterPlugin = $quoteUpdateAfterPlugin;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function executeCreateBeforePlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $this->executePlugins($this->quoteCreateBeforePlugins, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function executeCreateAfterPlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $this->executePlugins($this->quoteCreateAfterPlugins, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function executeUpdateBeforePlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $this->executePlugins($this->quoteUpdateBeforePlugins, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function executeUpdateAfterPlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $this->executePlugins($this->quoteUpdateAfterPlugin, $quoteTransfer);

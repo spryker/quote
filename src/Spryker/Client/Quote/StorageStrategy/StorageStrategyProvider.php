@@ -33,9 +33,6 @@ class StorageStrategyProvider implements StorageStrategyProviderInterface
         $this->storageStrategyList = $storageStrategyList;
     }
 
-    /**
-     * @return \Spryker\Client\Quote\StorageStrategy\StorageStrategyInterface
-     */
     public function provideStorage(): StorageStrategyInterface
     {
         $storageStrategy = $this->findStorageStrategy($this->quoteConfig->getStorageStrategy());
@@ -70,9 +67,6 @@ class StorageStrategyProvider implements StorageStrategyProviderInterface
         );
     }
 
-    /**
-     * @return \Spryker\Client\Quote\StorageStrategy\StorageStrategyInterface
-     */
     protected function getDefaultStorageStrategy(): StorageStrategyInterface
     {
         return $this->findStorageStrategy(SharedConfig::STORAGE_STRATEGY_SESSION);

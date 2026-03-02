@@ -33,9 +33,6 @@ class ReadQuoteTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testReadQuoteFromDatabaseByCustomer(): void
     {
         // Arrange
@@ -54,9 +51,6 @@ class ReadQuoteTest extends Unit
         $this->assertSame($quoteTransfer->getIdQuote(), $quoteResponseTransfer->getQuoteTransfer()->getIdQuote(), 'Quote response should have expected quote ID from database.');
     }
 
-    /**
-     * @return void
-     */
     public function testShouldGetQuoteCollectionByCriteriaFilter(): void
     {
         // Arrange
@@ -81,9 +75,6 @@ class ReadQuoteTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testShouldExecuteStackOfQuoteCollectionFilterPlugins(): void
     {
         // Assert
@@ -108,9 +99,6 @@ class ReadQuoteTest extends Unit
         $this->tester->getFacade()->getQuoteCollection($quoteCriteriaFilterTransfer);
     }
 
-    /**
-     * @return \Spryker\Zed\QuoteExtension\Dependency\Plugin\QuoteCollectionFilterPluginInterface
-     */
     protected function getQuoteCollectionFilterPluginMock(): QuoteCollectionFilterPluginInterface
     {
         $quoteCollectionFilterPluginMock = Stub::makeEmpty(QuoteCollectionFilterPluginInterface::class);

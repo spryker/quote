@@ -47,9 +47,6 @@ class QuoteBusinessTester extends Actor
      */
     protected const CONFIG_LIFETIME_ONE_HOUR = 'PT01H';
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerTransfer
-     */
     public function haveAnonymousCustomerWithNotExpiredQuote(): CustomerTransfer
     {
         $customerTransfer = new CustomerTransfer();
@@ -62,9 +59,6 @@ class QuoteBusinessTester extends Actor
         return $customerTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerTransfer
-     */
     public function haveAnonymousCustomerWithExpiredQuote(): CustomerTransfer
     {
         $customerTransfer = new CustomerTransfer();
@@ -78,11 +72,6 @@ class QuoteBusinessTester extends Actor
         return $customerTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return void
-     */
     protected function createExpiredGuestQuote(CustomerTransfer $customerTransfer): void
     {
         $quoteQuery = SpyQuoteQuery::create();

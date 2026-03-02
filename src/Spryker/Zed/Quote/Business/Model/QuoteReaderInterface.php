@@ -25,12 +25,6 @@ interface QuoteReaderInterface
      */
     public function findQuoteByCustomer(CustomerTransfer $customerTransfer): QuoteResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function findQuoteByCustomerAndStore(CustomerTransfer $customerTransfer, StoreTransfer $storeTransfer): QuoteResponseTransfer;
 
     /**
@@ -40,17 +34,7 @@ interface QuoteReaderInterface
      */
     public function findQuoteById($idQuote): QuoteResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function findQuoteByUuid(QuoteTransfer $quoteTransfer): QuoteResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteCollectionTransfer
-     */
     public function getFilteredQuoteCollection(QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer): QuoteCollectionTransfer;
 }

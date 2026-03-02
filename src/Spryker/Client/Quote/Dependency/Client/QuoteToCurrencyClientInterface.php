@@ -11,15 +11,7 @@ use Generated\Shared\Transfer\CurrencyTransfer;
 
 interface QuoteToCurrencyClientInterface
 {
-    /**
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function getCurrent(): CurrencyTransfer;
 
-    /**
-     * @param string $currencyIsoCode
-     *
-     * @return void
-     */
     public function setCurrentCurrencyIsoCode(string $currencyIsoCode): void;
 }

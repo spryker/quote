@@ -13,11 +13,6 @@ use Orm\Zed\Quote\Persistence\SpyQuote;
 
 interface QuoteMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SpyQuoteEntityTransfer $quoteEntityTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function mapQuoteTransfer(SpyQuoteEntityTransfer $quoteEntityTransfer): QuoteTransfer;
 
     /**

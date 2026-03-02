@@ -116,12 +116,6 @@ class QuoteRepository extends AbstractRepository implements QuoteRepositoryInter
         return $quoteCollectionTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\Quote\Persistence\SpyQuoteQuery $quoteQuery
-     * @param \Generated\Shared\Transfer\QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer
-     *
-     * @return \Orm\Zed\Quote\Persistence\SpyQuoteQuery
-     */
     protected function applyQuoteCriteriaFilters(SpyQuoteQuery $quoteQuery, QuoteCriteriaFilterTransfer $quoteCriteriaFilterTransfer): SpyQuoteQuery
     {
         if ($quoteCriteriaFilterTransfer->getCustomerReference()) {
@@ -139,22 +133,11 @@ class QuoteRepository extends AbstractRepository implements QuoteRepositoryInter
         return $quoteQuery;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SpyQuoteEntityTransfer $quoteEntityTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function mapQuoteTransfer(SpyQuoteEntityTransfer $quoteEntityTransfer): QuoteTransfer
     {
         return $this->getFactory()->createQuoteMapper()->mapQuoteTransfer($quoteEntityTransfer);
     }
 
-    /**
-     * @param \DateTime $lifetimeLimitDate
-     * @param int $limit
-     *
-     * @return \Generated\Shared\Transfer\QuoteCollectionTransfer
-     */
     public function findExpiredGuestQuotes(DateTime $lifetimeLimitDate, int $limit): QuoteCollectionTransfer
     {
         $quoteQuery = $this->getFactory()
@@ -177,11 +160,6 @@ class QuoteRepository extends AbstractRepository implements QuoteRepositoryInter
         return $quoteCollectionTransfer;
     }
 
-    /**
-     * @param string $uuidQuote
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer|null
-     */
     public function findQuoteByUuid(string $uuidQuote): ?QuoteTransfer
     {
         $quoteQuery = $this->getFactory()

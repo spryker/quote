@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class QuoteLockStatusValidator implements QuoteLockStatusValidatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     public function isQuoteLocked(QuoteTransfer $quoteTransfer): bool
     {
         return (bool)$quoteTransfer->getIsLocked();

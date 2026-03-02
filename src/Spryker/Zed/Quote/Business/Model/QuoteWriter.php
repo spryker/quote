@@ -82,11 +82,6 @@ class QuoteWriter implements QuoteWriterInterface
         $this->quoteFieldsConfigurator = $quoteFieldsConfigurator;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function save(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         if ($quoteTransfer->getIdQuote()) {
@@ -96,11 +91,6 @@ class QuoteWriter implements QuoteWriterInterface
         return $this->create($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function create(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         if ($quoteTransfer->getIdQuote()) {
@@ -124,11 +114,6 @@ class QuoteWriter implements QuoteWriterInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function update(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $quoteByIdTransfer = $this->quoteRepository->findQuoteById($quoteTransfer->getIdQuote());
@@ -150,11 +135,6 @@ class QuoteWriter implements QuoteWriterInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function executeCreateTransaction(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $quoteTransfer = $this->quoteWriterPluginExecutor->executeCreateBeforePlugins($quoteTransfer);
@@ -166,11 +146,6 @@ class QuoteWriter implements QuoteWriterInterface
             ->setQuoteTransfer($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function executeUpdateTransaction(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $quoteTransfer = $this->quoteWriterPluginExecutor->executeUpdateBeforePlugins($quoteTransfer);
@@ -182,11 +157,6 @@ class QuoteWriter implements QuoteWriterInterface
             ->setQuoteTransfer($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function addCurrentStoreToQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         if (!$quoteTransfer->getStore()) {
@@ -196,11 +166,6 @@ class QuoteWriter implements QuoteWriterInterface
         return $quoteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function reloadStoreForQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         if ($quoteTransfer->getStore()->getIdStore()) {
@@ -213,11 +178,6 @@ class QuoteWriter implements QuoteWriterInterface
         return $quoteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function createQuoteResponseTransfer(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         return (new QuoteResponseTransfer())
@@ -225,11 +185,6 @@ class QuoteWriter implements QuoteWriterInterface
             ->setIsSuccessful(false);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function executeQuoteExpandBeforeCreatePlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         foreach ($this->quoteExpandBeforeCreatePlugins as $quoteExpandBeforeCreatePlugin) {
@@ -239,11 +194,6 @@ class QuoteWriter implements QuoteWriterInterface
         return $quoteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function saveQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $quoteFieldsAllowedForSaving = $this->quoteFieldsConfigurator->getQuoteFieldsAllowedForSaving($quoteTransfer);

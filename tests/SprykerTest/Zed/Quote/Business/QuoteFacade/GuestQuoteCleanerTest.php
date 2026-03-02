@@ -37,9 +37,6 @@ class GuestQuoteCleanerTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testGuestQuoteClearAfterLifetimeIsExceeded(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {
@@ -57,9 +54,6 @@ class GuestQuoteCleanerTest extends Unit
         $this->assertNull($findQuoteResponseTransfer->getQuoteTransfer(), static::ERROR_MESSAGE_SHOULD_BE_DELETED);
     }
 
-    /**
-     * @return void
-     */
     public function testGuestQuoteNotClearedBeforeLifetimeIsExceeded(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {

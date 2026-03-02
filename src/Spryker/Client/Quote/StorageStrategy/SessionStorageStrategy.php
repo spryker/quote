@@ -36,12 +36,6 @@ class SessionStorageStrategy implements StorageStrategyInterface
      */
     protected $quoteLocker;
 
-    /**
-     * @param \Spryker\Client\Quote\Session\QuoteSessionInterface $quoteSession
-     * @param \Spryker\Client\Quote\QuoteValidator\QuoteLockStatusValidatorInterface $quoteLockStatusValidator
-     * @param \Spryker\Client\Quote\QuoteValidator\QuoteEditStatusValidatorInterface $quoteEditStatusValidator
-     * @param \Spryker\Client\Quote\QuoteLocker\QuoteLockerInterface $quoteLocker
-     */
     public function __construct(
         QuoteSessionInterface $quoteSession,
         QuoteLockStatusValidatorInterface $quoteLockStatusValidator,
@@ -96,31 +90,16 @@ class SessionStorageStrategy implements StorageStrategyInterface
         $this->quoteSession->clearQuote();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     public function isQuoteLocked(QuoteTransfer $quoteTransfer): bool
     {
         return $this->quoteLockStatusValidator->isQuoteLocked($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     public function isQuoteEditable(QuoteTransfer $quoteTransfer): bool
     {
         return $this->quoteEditStatusValidator->isQuoteEditable($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function lockQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $this->quoteLocker->lock($quoteTransfer);

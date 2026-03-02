@@ -17,11 +17,6 @@ class TestDatabaseStrategyReaderPlugin implements DatabaseStrategyReaderPluginIn
      */
     public const CUSTOMER_REFERENCE = 'test-customer-reference';
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function execute(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $quoteTransfer->setCustomerReference(static::CUSTOMER_REFERENCE);

@@ -28,9 +28,6 @@ class LockQuoteTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testLockQuoteShouldSetIsLockedToTrueIfQuoteIsUnlocked(): void
     {
         // Assign
@@ -44,9 +41,6 @@ class LockQuoteTest extends Unit
         $this->assertTrue($quoteTransfer->getIsLocked());
     }
 
-    /**
-     * @return void
-     */
     public function testLockQuoteShouldSetIsLockedToTrueIfQuoteIsLocked(): void
     {
         // Assign
@@ -60,9 +54,6 @@ class LockQuoteTest extends Unit
         $this->assertTrue($quoteTransfer->getIsLocked());
     }
 
-    /**
-     * @return void
-     */
     public function testUnlockQuoteShouldSetIsLockedToFalseIfQuoteIsLocked(): void
     {
         // Assign
@@ -76,9 +67,6 @@ class LockQuoteTest extends Unit
         $this->assertFalse($quoteTransfer->getIsLocked());
     }
 
-    /**
-     * @return void
-     */
     public function testUnlockQuoteShouldSetIsLockedToFalseIfQuoteIsUnlocked(): void
     {
         // Assign

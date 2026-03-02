@@ -132,9 +132,6 @@ class QuoteSession implements QuoteSessionInterface
         $quoteTransfer->setCurrency($this->getCurrencyTransfer());
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     protected function getCurrencyTransfer(): CurrencyTransfer
     {
         if (!static::$currencyTransfer) {
@@ -144,11 +141,6 @@ class QuoteSession implements QuoteSessionInterface
         return static::$currencyTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
     protected function updateCurrency(QuoteTransfer $quoteTransfer): void
     {
         $currencyTransfer = $this->currencyClient->getCurrent();
@@ -157,9 +149,6 @@ class QuoteSession implements QuoteSessionInterface
         }
     }
 
-    /**
-     * @return string
-     */
     protected function getQuoteSessionIdentifier(): string
     {
         return sprintf(

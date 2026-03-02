@@ -49,9 +49,6 @@ class QuoteFactory extends AbstractFactory
             ->provideStorage();
     }
 
-    /**
-     * @return \Spryker\Client\Quote\QuoteLocker\QuoteLockerInterface
-     */
     public function createQuoteLocker(): QuoteLockerInterface
     {
         return new QuoteLocker();
@@ -109,9 +106,6 @@ class QuoteFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\Quote\QuoteValidator\QuoteEditStatusValidatorInterface
-     */
     public function createQuoteEditStatusValidator(): QuoteEditStatusValidatorInterface
     {
         return new QuoteEditStatusValidator(
@@ -119,9 +113,6 @@ class QuoteFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\Quote\QuoteValidator\QuoteLockStatusValidatorInterface
-     */
     public function createQuoteLockStatusValidator(): QuoteLockStatusValidatorInterface
     {
         return new QuoteLockStatusValidator();
@@ -175,17 +166,11 @@ class QuoteFactory extends AbstractFactory
         return $this->getProvidedDependency(QuoteDependencyProvider::SERVICE_ZED);
     }
 
-    /**
-     * @return \Spryker\Client\Quote\Dependency\Client\QuoteToCurrencyClientInterface
-     */
     public function getCurrencyClient(): QuoteToCurrencyClientInterface
     {
         return $this->getProvidedDependency(QuoteDependencyProvider::CLIENT_CURRENCY);
     }
 
-    /**
-     * @return \Spryker\Client\Quote\Dependency\Client\QuoteToStoreClientInterface
-     */
     public function getStoreClient(): QuoteToStoreClientInterface
     {
         return $this->getProvidedDependency(QuoteDependencyProvider::CLIENT_STORE);

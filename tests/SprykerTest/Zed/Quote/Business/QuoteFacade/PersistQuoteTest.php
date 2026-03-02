@@ -42,9 +42,6 @@ class PersistQuoteTest extends Unit
      */
     protected $quoteFacade;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -103,9 +100,6 @@ class PersistQuoteTest extends Unit
         $this->assertSame($actualQuoteTransfer->getCustomerReference(), $expectedQuoteTransfer->getCustomerReference());
     }
 
-    /**
-     * @return array
-     */
     public function persistQuoteDataProvider(): array
     {
         return [
@@ -114,9 +108,6 @@ class PersistQuoteTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function providePersistEmptyQuoteData(): array
     {
         $quoteTransfer = (new QuoteBuilder())->build();
@@ -125,9 +116,6 @@ class PersistQuoteTest extends Unit
         return [$quoteTransfer, $expectedQuoteTransfer];
     }
 
-    /**
-     * @return array
-     */
     protected function providePersistFilteredQuoteData(): array
     {
         /** @var \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer */

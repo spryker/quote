@@ -38,12 +38,6 @@ class QuotePersistenceTester extends Actor
 {
     use _generated\QuotePersistenceTesterActions;
 
-    /**
-     * @param array $quoteAllowedFields
-     * @param array $decodedQuoteData
-     *
-     * @return void
-     */
     public function assertContainOnlyAllowedFields(array $quoteAllowedFields, array $decodedQuoteData): void
     {
         $this->assertCount(
@@ -73,17 +67,11 @@ class QuotePersistenceTester extends Actor
         }
     }
 
-    /**
-     * @return \Orm\Zed\Quote\Persistence\SpyQuote
-     */
     public function createQuotePropelEntity(): SpyQuote
     {
         return new SpyQuote();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function createQuoteTransfer(): QuoteTransfer
     {
         $quoteDefaultProductImageTransfer = (new ProductImageBuilder([

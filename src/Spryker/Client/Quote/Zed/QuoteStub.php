@@ -18,19 +18,11 @@ class QuoteStub implements QuoteStubInterface
      */
     protected $zedStub;
 
-    /**
-     * @param \Spryker\Client\ZedRequest\ZedRequestClientInterface $zedStub
-     */
     public function __construct(ZedRequestClientInterface $zedStub)
     {
         $this->zedStub = $zedStub;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function deleteQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         /** @var \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer */

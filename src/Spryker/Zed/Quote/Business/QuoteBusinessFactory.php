@@ -38,9 +38,6 @@ use Spryker\Zed\Quote\QuoteDependencyProvider;
  */
 class QuoteBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\Quote\Business\Model\QuoteWriterInterface
-     */
     public function createQuoteWriter(): QuoteWriterInterface
     {
         return new QuoteWriter(
@@ -54,9 +51,6 @@ class QuoteBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\Model\QuoteWriterPluginExecutorInterface
-     */
     public function createQuoteWriterPluginExecutor(): QuoteWriterPluginExecutorInterface
     {
         return new QuoteWriterPluginExecutor(
@@ -67,17 +61,11 @@ class QuoteBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\QuoteValidator\QuoteLockStatusValidatorInterface
-     */
     public function createQuoteLockStatusValidator(): QuoteLockStatusValidatorInterface
     {
         return new QuoteLockStatusValidator();
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\Model\QuoteReaderInterface
-     */
     public function createQuoteReader(): QuoteReaderInterface
     {
         return new QuoteReader(
@@ -88,17 +76,11 @@ class QuoteBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\Quote\QuoteLockerInterface
-     */
     public function createQuoteLocker(): QuoteLockerInterface
     {
         return new QuoteLocker();
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\Model\QuoteDeleterInterface
-     */
     public function createQuoteDeleter(): QuoteDeleterInterface
     {
         return new QuoteDeleter(
@@ -109,9 +91,6 @@ class QuoteBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\GuestQuote\GuestQuoteDeleterInterface
-     */
     public function createGuestQuoteDeleter(): GuestQuoteDeleterInterface
     {
         return new GuestQuoteDeleter(
@@ -122,9 +101,6 @@ class QuoteBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\Business\Validator\QuoteValidatorInterface
-     */
     public function createQuoteValidator(): QuoteValidatorInterface
     {
         return new QuoteValidator(
@@ -156,9 +132,6 @@ class QuoteBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Quote\QuoteConfig
-     */
     public function getBundleConfig(): QuoteConfig
     {
         return $this->getConfig();

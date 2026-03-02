@@ -147,11 +147,6 @@ class QuoteDependencyProvider extends AbstractDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
     protected function addCurrencyClient(Container $container): Container
     {
         $container->set(static::CLIENT_CURRENCY, function (Container $container) {
@@ -179,11 +174,6 @@ class QuoteDependencyProvider extends AbstractDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
     protected function addStoreClient(Container $container): Container
     {
         $container->set(static::CLIENT_STORE, function (Container $container) {

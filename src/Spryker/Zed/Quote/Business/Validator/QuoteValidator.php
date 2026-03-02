@@ -25,11 +25,6 @@ class QuoteValidator implements QuoteValidatorInterface
         $this->quoteValidatorPlugins = $quoteValidatorPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteValidationResponseTransfer
-     */
     public function validate(QuoteTransfer $quoteTransfer): QuoteValidationResponseTransfer
     {
         $quoteValidationResponseTransfer = (new QuoteValidationResponseTransfer())
@@ -39,12 +34,6 @@ class QuoteValidator implements QuoteValidatorInterface
         return $quoteValidationResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\QuoteValidationResponseTransfer $quoteValidationResponseTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteValidationResponseTransfer
-     */
     protected function executeQuoteValidatorPlugins(
         QuoteTransfer $quoteTransfer,
         QuoteValidationResponseTransfer $quoteValidationResponseTransfer

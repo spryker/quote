@@ -30,9 +30,6 @@ class UpdateQuoteTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testUpdateQuotePersistChangesToDatabase(): void
     {
         // Arrange

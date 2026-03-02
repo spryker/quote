@@ -50,22 +50,12 @@ class QuoteCommentValidator implements QuoteCommentValidatorInterface
      */
     protected $quoteReader;
 
-    /**
-     * @param \Spryker\Zed\Quote\Dependency\Facade\QuoteToStoreFacadeInterface $storeFacade
-     * @param \Spryker\Zed\Quote\Business\Model\QuoteReaderInterface $quoteReader
-     */
     public function __construct(QuoteToStoreFacadeInterface $storeFacade, QuoteReaderInterface $quoteReader)
     {
         $this->storeFacade = $storeFacade;
         $this->quoteReader = $quoteReader;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CommentRequestTransfer $commentRequestTransfer
-     * @param \Generated\Shared\Transfer\CommentValidationResponseTransfer $commentValidationResponseTransfer
-     *
-     * @return \Generated\Shared\Transfer\CommentValidationResponseTransfer
-     */
     public function validate(
         CommentRequestTransfer $commentRequestTransfer,
         CommentValidationResponseTransfer $commentValidationResponseTransfer
@@ -106,11 +96,6 @@ class QuoteCommentValidator implements QuoteCommentValidatorInterface
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CommentRequestTransfer $commentRequestTransfer
-     *
-     * @return bool
-     */
     protected function isCustomerProvided(CommentRequestTransfer $commentRequestTransfer): bool
     {
         return $commentRequestTransfer->getComment()
@@ -118,12 +103,6 @@ class QuoteCommentValidator implements QuoteCommentValidatorInterface
             && $commentRequestTransfer->getCommentOrFail()->getCustomer()->getCustomerReference();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return bool
-     */
     protected function isQuoteOwnedByCustomer(
         QuoteResponseTransfer $quoteResponseTransfer,
         CustomerTransfer $customerTransfer

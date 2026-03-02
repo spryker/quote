@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface QuoteStubInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function deleteQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer;
 }

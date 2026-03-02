@@ -58,11 +58,6 @@ class QuoteDeleter implements QuoteDeleterInterface
         $this->quoteDeleteAfterPlugins = $quoteDeleteAfterPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function delete(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $quoteResponseTransfer = new QuoteResponseTransfer();
@@ -76,11 +71,6 @@ class QuoteDeleter implements QuoteDeleterInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     protected function validateQuote(QuoteTransfer $quoteTransfer): bool
     {
         if (!$quoteTransfer->getCustomer()) {
@@ -95,11 +85,6 @@ class QuoteDeleter implements QuoteDeleterInterface
         return $this->isDeleteAllowed($loadedQuoteTransfer, $customerTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function executeDeleteTransaction(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $quoteResponseTransfer = new QuoteResponseTransfer();
@@ -112,11 +97,6 @@ class QuoteDeleter implements QuoteDeleterInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function executeDeleteBeforePlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         foreach ($this->quoteDeleteBeforePlugins as $quoteWritePlugin) {
@@ -126,11 +106,6 @@ class QuoteDeleter implements QuoteDeleterInterface
         return $quoteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function executeDeleteAfterPlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         foreach ($this->quoteDeleteAfterPlugins as $quoteDeleteAfterPlugin) {
@@ -140,12 +115,6 @@ class QuoteDeleter implements QuoteDeleterInterface
         return $quoteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return bool
-     */
     protected function isDeleteAllowed(QuoteTransfer $quoteTransfer, CustomerTransfer $customerTransfer): bool
     {
         return $quoteTransfer->getCustomerReference() === $customerTransfer->getCustomerReference()

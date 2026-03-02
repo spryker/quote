@@ -132,11 +132,6 @@ class DatabaseStorageStrategy implements StorageStrategyInterface
         $this->quoteSession->setQuote($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     public function isQuoteLocked(QuoteTransfer $quoteTransfer): bool
     {
         return $this->quoteLockStatusValidator->isQuoteLocked($quoteTransfer);
@@ -155,29 +150,16 @@ class DatabaseStorageStrategy implements StorageStrategyInterface
         return $this;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     public function isQuoteEditable(QuoteTransfer $quoteTransfer): bool
     {
         return $this->quoteEditStatusValidator->isQuoteEditable($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function lockQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         return $this->quoteLocker->lock($quoteTransfer);
     }
 
-    /**
-     * @return bool
-     */
     protected function executeDatabaseStrategyPreCheckPlugins(): bool
     {
         $quoteTransfer = $this->quoteSession->getQuote();

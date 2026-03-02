@@ -38,9 +38,6 @@ class SessionQuoteClientTest extends Unit
      */
     protected const DEFAULT_CURRENCY = 'EUR';
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         $sessionContainer = new Session(new MockArraySessionStorage());
@@ -50,9 +47,6 @@ class SessionQuoteClientTest extends Unit
         $this->getDependencyHelper()->setDependency(QuoteDependencyProvider::CLIENT_CURRENCY, $this->createQuoteToCurrencyClientInterface());
     }
 
-    /**
-     * @return void
-     */
     public function testGetQuoteShouldReturnQuoteTransfer(): void
     {
         $quoteClient = new QuoteClient();
@@ -60,9 +54,6 @@ class SessionQuoteClientTest extends Unit
         $this->assertInstanceOf(QuoteTransfer::class, $quoteClient->getQuote());
     }
 
-    /**
-     * @return void
-     */
     public function testSetQuoteShouldStoreQuoteTransfer(): void
     {
         $quoteTransfer = new QuoteTransfer();
@@ -72,9 +63,6 @@ class SessionQuoteClientTest extends Unit
         $this->assertSame($quoteTransfer, $quoteClient->getQuote());
     }
 
-    /**
-     * @return void
-     */
     public function testClearQuoteShouldSetEmptyQuoteTransfer(): void
     {
         $quoteTransfer = new QuoteTransfer();

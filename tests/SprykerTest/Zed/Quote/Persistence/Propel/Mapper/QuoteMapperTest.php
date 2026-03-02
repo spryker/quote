@@ -65,9 +65,6 @@ class QuoteMapperTest extends Unit
         $this->tester->assertContainOnlyAllowedFields($quoteFieldsAllowedForSaving, $decodedQuoteData);
     }
 
-    /**
-     * @return \Spryker\Service\UtilEncoding\UtilEncodingServiceInterface
-     */
     protected function getUtilEncodingService(): UtilEncodingServiceInterface
     {
         return $this->tester->getLocator()->utilEncoding()->service();
@@ -91,9 +88,6 @@ class QuoteMapperTest extends Unit
         return $quoteConfigMock;
     }
 
-    /**
-     * @return array
-     */
     public function mapTransferToEntityDataProvider(): array
     {
         return [

@@ -28,9 +28,6 @@ class DeleteQuoteTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testDeleteQuoteEntityFromDatabase(): void
     {
         // Arrange
@@ -50,9 +47,6 @@ class DeleteQuoteTest extends Unit
         $this->assertNull($findQuoteResponseTransfer->getQuoteTransfer(), 'Quote should have been deleted from database.');
     }
 
-    /**
-     * @return void
-     */
     public function testDeleteForeignCustomerQuoteEntityFromDatabase(): void
     {
         // Arrange

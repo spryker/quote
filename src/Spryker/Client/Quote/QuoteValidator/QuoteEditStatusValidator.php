@@ -19,19 +19,11 @@ class QuoteEditStatusValidator implements QuoteEditStatusValidatorInterface
      */
     protected $quoteLockStatusValidator;
 
-    /**
-     * @param \Spryker\Client\Quote\QuoteValidator\QuoteLockStatusValidatorInterface $quoteLockStatusValidator
-     */
     public function __construct(QuoteLockStatusValidatorInterface $quoteLockStatusValidator)
     {
         $this->quoteLockStatusValidator = $quoteLockStatusValidator;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     public function isQuoteEditable(QuoteTransfer $quoteTransfer): bool
     {
         if ($this->quoteLockStatusValidator->isQuoteLocked($quoteTransfer)) {
@@ -49,11 +41,6 @@ class QuoteEditStatusValidator implements QuoteEditStatusValidatorInterface
         return $this->can('WriteSharedCartPermissionPlugin', $quoteTransfer->getIdQuote());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     protected function isQuoteOwner(QuoteTransfer $quoteTransfer): bool
     {
         return $quoteTransfer->getCustomerReference() === $quoteTransfer->requireCustomer()->getCustomer()
