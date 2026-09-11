@@ -24,6 +24,11 @@ class StorageStrategyProvider implements StorageStrategyProviderInterface
     protected $storageStrategyList;
 
     /**
+     * @var array<string, \Spryker\Client\Quote\StorageStrategy\StorageStrategyInterface>
+     */
+    protected static array $storageStrategyCache = [];
+
+    /**
      * @param \Spryker\Client\Quote\QuoteConfig $quoteConfig
      * @param array<\Spryker\Client\Quote\StorageStrategy\StorageStrategyInterface> $storageStrategyList
      */
@@ -35,13 +40,19 @@ class StorageStrategyProvider implements StorageStrategyProviderInterface
 
     public function provideStorage(): StorageStrategyInterface
     {
-        $storageStrategy = $this->findStorageStrategy($this->quoteConfig->getStorageStrategy());
+        $storageStrategyType = $this->quoteConfig->getStorageStrategy();
 
-        if (!$storageStrategy->isAllowed()) {
-            $storageStrategy = $this->getDefaultStorageStrategy();
+        if (!isset(static::$storageStrategyCache[$storageStrategyType])) {
+            $storageStrategy = $this->findStorageStrategy($storageStrategyType);
+
+            if (!$storageStrategy->isAllowed()) {
+                $storageStrategy = $this->getDefaultStorageStrategy();
+            }
+
+            return static::$storageStrategyCache[$storageStrategyType] = $storageStrategy;
         }
 
-        return $storageStrategy;
+        return static::$storageStrategyCache[$storageStrategyType];
     }
 
     /**

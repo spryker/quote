@@ -9,6 +9,7 @@ namespace SprykerTest\Client\Quote\StorageStrategy;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\QuoteTransfer;
+use ReflectionProperty;
 use Spryker\Client\Quote\Dependency\Client\QuoteToCurrencyClientInterface;
 use Spryker\Client\Quote\Dependency\Client\QuoteToCustomerClientInterface;
 use Spryker\Client\Quote\Dependency\Client\QuoteToStoreClientInterface;
@@ -47,6 +48,14 @@ class StorageStrategyProviderTest extends Unit
      * @var \SprykerTest\Client\Quote\QuoteClientTester
      */
     protected QuoteClientTester $tester;
+
+    protected function _before(): void
+    {
+        parent::_before();
+
+        $reflectionProperty = new ReflectionProperty(StorageStrategyProvider::class, 'storageStrategyCache');
+        $reflectionProperty->setValue(null, []);
+    }
 
     public function testNotLoggedInCustomerCanUseSessionStorageOnly(): void
     {
