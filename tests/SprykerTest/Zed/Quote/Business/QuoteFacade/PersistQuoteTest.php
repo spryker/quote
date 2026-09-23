@@ -81,7 +81,8 @@ class PersistQuoteTest extends Unit
         $expectedStoreTransfer = new StoreTransfer();
         $expectedStoreTransfer
             ->setIdStore($storeTransfer->getIdStore())
-            ->setName($storeTransfer->getName());
+            ->setName($storeTransfer->getName())
+            ->setIsVisibleToCustomer($storeTransfer->getIsVisibleToCustomer());
 
         $expectedQuoteTransfer
             ->setCurrency($currencyTransfer)
