@@ -18,12 +18,29 @@ use Orm\Zed\Quote\Persistence\SpyQuoteQuery;
 use PDOException;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
+use Throwable;
 
 /**
  * @method \Spryker\Zed\Quote\Persistence\QuotePersistenceFactory getFactory()
  */
 class QuoteRepository extends AbstractRepository implements QuoteRepositoryInterface
 {
+    /**
+     * PostgreSQL `lock_not_available`: the row is held by another transaction and `NOWAIT` refused
+     * to block.
+     */
+    protected const string SQL_STATE_LOCK_NOT_AVAILABLE = '55P03';
+
+    /**
+     * MySQL and MariaDB report the same condition as `ER_LOCK_NOWAIT` under the catch-all `HY000`
+     * SQL state, so only the driver code identifies it.
+     */
+    protected const int DRIVER_CODE_LOCK_NOT_AVAILABLE = 3572;
+
+    protected const int ERROR_INFORMATION_INDEX_SQL_STATE = 0;
+
+    protected const int ERROR_INFORMATION_INDEX_DRIVER_CODE = 1;
+
     /**
      * {@inheritDoc}
      *
@@ -179,34 +196,63 @@ class QuoteRepository extends AbstractRepository implements QuoteRepositoryInter
     /**
      * Acquires an exclusive database-level lock on a quote record.
      *
-     *  This method uses raw SQL with 'SELECT ... FOR UPDATE NOWAIT' syntax to implement row-level locking
-     *  for concurrency control. This approach:
-     *  1. Provides explicit control over the locking mechanism
-     *  2. Ensures only one process can modify a quote at a time
-     *  3. Fails immediately (NOWAIT) rather than blocking if the row is already locked
+     * Selects the row under an exclusive, non-blocking lock, so that only one process at a time can
+     * go on to modify the quote and a process that loses the race is told immediately instead of
+     * waiting. Must be called inside an active database transaction to be effective.
      *
-     *  Must be called within an active database transaction to be effective.
+     * The locking clause is emitted by the Propel adapter, so each platform gets the syntax it
+     * supports. Returns false only when the lock could not be taken — the row is gone, or another
+     * transaction holds it; anything else the database reports is rethrown.
      *
      * @param int $idQuote
+     *
+     * @throws \Throwable
      *
      * @return bool
      */
     public function acquireExclusiveQuoteLock(int $idQuote): bool
     {
         try {
-            $connection = $this->getFactory()->getPropelConnection();
+            // select() rather than a hydrated find: the row is only being probed, and hydrating it
+            // would seed Propel's instance pool, so a later findPk() in the same request would be
+            // served the locked snapshot instead of reading through.
+            return $this->getFactory()
+                ->createQuoteQuery()
+                ->filterByIdQuote($idQuote)
+                ->lockForUpdate([], true)
+                ->select([SpyQuoteTableMap::COL_ID_QUOTE])
+                ->findOne() !== null;
+        } catch (Throwable $exception) {
+            if ($this->isLockUnavailable($exception)) {
+                return false;
+            }
 
-            /** @var \Propel\Runtime\Connection\StatementInterface $statement */
-            $statement = $connection->prepare(sprintf(
-                'SELECT * FROM %s WHERE %s = ? FOR UPDATE NOWAIT',
-                SpyQuoteTableMap::TABLE_NAME,
-                SpyQuoteTableMap::COL_ID_QUOTE,
-            ));
-            $statement->execute([$idQuote]);
-
-            return $statement->rowCount() > 0;
-        } catch (PDOException $e) {
-            return false;
+            throw $exception;
         }
+    }
+
+    /**
+     * Propel wraps the driver exception in a `QueryExecutionException`, so the chain has to be
+     * walked down to the `PDOException` that carries the platform's error identifiers.
+     */
+    protected function isLockUnavailable(Throwable $exception): bool
+    {
+        for ($candidate = $exception; $candidate !== null; $candidate = $candidate->getPrevious()) {
+            if (!$candidate instanceof PDOException) {
+                continue;
+            }
+
+            $errorInformation = $candidate->errorInfo ?? [];
+
+            if (($errorInformation[static::ERROR_INFORMATION_INDEX_SQL_STATE] ?? null) === static::SQL_STATE_LOCK_NOT_AVAILABLE) {
+                return true;
+            }
+
+            if ((int)($errorInformation[static::ERROR_INFORMATION_INDEX_DRIVER_CODE] ?? 0) === static::DRIVER_CODE_LOCK_NOT_AVAILABLE) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

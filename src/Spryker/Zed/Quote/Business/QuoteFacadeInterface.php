@@ -248,9 +248,11 @@ interface QuoteFacadeInterface
     /**
      * Specification:
      * - Acquires an exclusive database-level lock on a quote record.
-     * - Uses 'SELECT FOR UPDATE NOWAIT' to ensure only one process can lock a quote at a time.
+     * - Selects the row under an exclusive, non-blocking lock, so only one process can lock a quote at a time.
+     * - Emits the locking clause through the Propel adapter, so each platform gets the syntax it supports.
      * - Returns true if the lock was successfully acquired and the quote exists.
      * - Returns false if the quote does not exist or is already locked by another transaction.
+     * - Throws any other database error rather than reporting it as a lock that was not acquired.
      * - Must be called within a database transaction to be effective.
      *
      * @api
