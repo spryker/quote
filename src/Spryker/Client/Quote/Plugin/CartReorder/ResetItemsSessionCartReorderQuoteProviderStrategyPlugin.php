@@ -15,6 +15,7 @@ use Spryker\Client\Kernel\AbstractPlugin;
 
 /**
  * @method \Spryker\Client\Quote\QuoteClientInterface getClient()
+ * @method \Spryker\Client\Quote\QuoteFactory getFactory()
  */
 class ResetItemsSessionCartReorderQuoteProviderStrategyPlugin extends AbstractPlugin implements CartReorderQuoteProviderStrategyPluginInterface
 {
@@ -28,6 +29,7 @@ class ResetItemsSessionCartReorderQuoteProviderStrategyPlugin extends AbstractPl
     /**
      * {@inheritDoc}
      * - Checks if the storage strategy is session.
+     * - Returns `false` when no session is started, as in an application that runs without one: there is no session quote to provide then.
      *
      * @api
      *
@@ -37,7 +39,8 @@ class ResetItemsSessionCartReorderQuoteProviderStrategyPlugin extends AbstractPl
      */
     public function isApplicable(CartReorderRequestTransfer $cartReorderRequestTransfer): bool
     {
-        return $this->getClient()->getStorageStrategy() === static::STORAGE_STRATEGY_SESSION;
+        return $this->getClient()->getStorageStrategy() === static::STORAGE_STRATEGY_SESSION
+            && $this->getFactory()->getSessionClient()->isStarted();
     }
 
     /**
